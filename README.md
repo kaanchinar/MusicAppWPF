@@ -4,4 +4,10 @@
 - Added credential validation statements
 - Used WPF for GUI
 
-Need to add more features and functionalities to the application. Aslo for mockup, you need to add `database.txt` file in `C:\`.
+TODO:
+- [x] ~~Migration to MVVM architecture.~~
+- [x] ~~Implementing Login and Register functionality.~~ (Some core security options are missing)
+- [ ] Implementing Music Library functionality.
+- [ ] Implementing Music Player functionality.
+- [ ] Deploying the DB on real world.
+
