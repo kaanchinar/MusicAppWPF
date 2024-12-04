@@ -3,12 +3,80 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="clr-namespace:MusicAppWPF"
+      xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+      xmlns:local="clr-namespace:MusicAppWPF.UserControls"
+      xmlns:vm="clr-namespace:MusicAppWPF.ViewModels"
       mc:Ignorable="d"
-      Title="Music App" Height="450" Width="800">
+      Title="Music App" Height="Auto" Width="Auto" d:DesignHeight="450" d:DesignWidth="800" d:Background="{StaticResource Background}">
+    <Page.DataContext>
+        <vm:PlaylistViewModel/>
+    </Page.DataContext>
     <Grid>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock> Welcome page</TextBlock>
-        </StackPanel>
+        <!--General page grid-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="300" MaxWidth="500"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--Left dock panel-->
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                
+            </Grid.RowDefinitions>
+            <!--Static menu items-->
+            <Grid Grid.Column="0" Grid.Row="0" VerticalAlignment="Stretch">
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <local:SidePanelButtons Grid.Row="0" ButtonIcon="CompactDisc" ButtonText="Albums"/>
+                <local:SidePanelButtons Grid.Row="1" ButtonIcon="Users" ButtonText="Artists"/>
+                <local:SidePanelButtons Grid.Row="2" ButtonIcon="Music" ButtonText="All Tracks"/>
+            </Grid> 
+            <!--Playlist grid-->
+            <Border Grid.Row="1" BorderBrush="{StaticResource Accent}" BorderThickness="0,1,0,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" Background="{StaticResource Background}" BorderBrush="{StaticResource Secondary}" BorderThickness="3,0,0,0" >
+                        <Button Command="{Binding AddPlaylistCommand}" Background="Transparent" HorizontalAlignment="Left" BorderThickness="0">
+                            <Button.Content>
+                                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
+                                    <fa:IconBlock  Icon="Plus" Foreground="{StaticResource Primary}" HorizontalAlignment="Left" Margin="0,0,10,0"/>
+                                    <TextBlock Text="New Playlist" HorizontalAlignment="Right"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                    </Border>
+                    <ListBox Grid.Row="1" ItemsSource="{Binding Playlists}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <local:SidePanelButtons ButtonIcon="List" ButtonText="{Binding Name}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    
+                </Grid>
+            </Border>
+        </Grid>
+        <GridSplitter Width="2" Background="Red" ResizeBehavior="PreviousAndNext" VerticalAlignment="Stretch" Grid.Column="1"/>
+
     </Grid>
 </Page>

@@ -12,27 +12,13 @@
         <SolidColorBrush x:Key="Accent" Color="#b87dbc"/>
 
         <Style TargetType="Button">
-             <Setter Value="18" Property="FontSize"/>
+             
              <Setter Property="FontFamily" Value="Segoe UI"/>
              <Setter Value="{StaticResource Text}" Property="Foreground"/>
              
              <Setter Property="Padding" Value="10"/>
-             <Setter Property="FontWeight" Value="SemiBold"/>
-             <Setter Property="Template">
-                 <Setter.Value>
-                     <ControlTemplate TargetType="Button">
-                         <Border x:Name="Border" CornerRadius="3" Background="{StaticResource Primary}" BorderBrush="{StaticResource Primary}" BorderThickness="2,2,2,2" >
-                             <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                         </Border>
-                         <ControlTemplate.Triggers>
-                             <Trigger Property="IsMouseOver" Value="True">
-                                 <Setter Property="Cursor" Value="Hand"/>
-                             </Trigger>
-                         </ControlTemplate.Triggers>
-                     </ControlTemplate>
-                     
-                 </Setter.Value>
-             </Setter>
+             
+
              
          </Style>
         <Style TargetType="TextBox">

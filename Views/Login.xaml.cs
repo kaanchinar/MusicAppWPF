@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using MusicAppWPF.ViewModels;
 
-namespace MusicAppWPF;
+namespace MusicAppWPF.Views;
 
 public partial class Login : Page
 {

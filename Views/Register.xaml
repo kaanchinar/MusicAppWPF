@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:MusicAppWPF.ViewModels"
       mc:Ignorable="d"
-      Title="Music App" Height="450" Width="800" >
+      Title="Music App" Height="Auto" Width="Auto" d:DesignHeight="450" d:DesignWidth="800">
     <Page.DataContext>
         <local:RegisterViewModel/>
     </Page.DataContext>
@@ -29,7 +29,9 @@
             <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"  Margin="0,0,0,10"/>
             <TextBlock Text="Password:" Margin="0,0,0,0"/>
             <PasswordBox PasswordChanged="PasswordBox_OnPasswordChanged" Margin="0,0,0,10"/>
-            <Button Command="{Binding RegisterCommand}" Width="200">Register</Button>
+            <Border CornerRadius="3" BorderBrush="{StaticResource Primary}" Background="{StaticResource Background}" BorderThickness="3">
+                <Button Content="Register" Background="Transparent" Command="{Binding RegisterCommand}" BorderThickness="0" Foreground="{StaticResource Text}"></Button>
+            </Border>
             <TextBlock>
                 <Hyperlink NavigateUri="Login.xaml">
                     Already have an account? Login here.
