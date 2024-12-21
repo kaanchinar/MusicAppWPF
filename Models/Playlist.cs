@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace MusicAppWPF.Models;
 
 
-public class Playlist
+public class Playlist:TimeStamp
 {
     [Key]
     public Guid PlaylistId { get; set; }
@@ -12,6 +12,5 @@ public class Playlist
     public   User User { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
-    public DateTime CreatedAt { get; set; }
-    public DateTime UpdatedAt { get; set; }
+
 }
