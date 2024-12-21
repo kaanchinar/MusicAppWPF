@@ -14,7 +14,7 @@
     <Grid>
         <!--General page grid-->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition MinWidth="300" MaxWidth="500"/>
+            <ColumnDefinition MinWidth="200" MaxWidth="500"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
@@ -25,9 +25,7 @@
         </Grid.RowDefinitions>
         <!--Left dock panel-->
         <Grid Grid.Row="0" Grid.Column="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
+           
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -48,15 +46,13 @@
             <!--Playlist grid-->
             <Border Grid.Row="1" BorderBrush="{StaticResource Accent}" BorderThickness="0,1,0,0">
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
+                    
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Border Grid.Row="0" Background="{StaticResource Background}" BorderBrush="{StaticResource Secondary}" BorderThickness="3,0,0,0" >
-                        <Button Command="{Binding AddPlaylistCommand}" Background="Transparent" HorizontalAlignment="Left" BorderThickness="0">
+                        <Button Background="Transparent" HorizontalAlignment="Left" BorderThickness="0">
                             <Button.Content>
                                 <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
                                     <fa:IconBlock  Icon="Plus" Foreground="{StaticResource Primary}" HorizontalAlignment="Left" Margin="0,0,10,0"/>
@@ -65,13 +61,7 @@
                             </Button.Content>
                         </Button>
                     </Border>
-                    <ListBox Grid.Row="1" ItemsSource="{Binding Playlists}">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <local:SidePanelButtons ButtonIcon="List" ButtonText="{Binding Name}"/>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                    
                     
                 </Grid>
             </Border>

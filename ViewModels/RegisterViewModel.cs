@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using MusicAppWPF.Data;
 using MusicAppWPF.Models;
 using MusicAppWPF.Views;
 
@@ -43,25 +44,25 @@ public class RegisterViewModel : ViewModelBase
     }
     
     public ICommand RegisterCommand => new RelayCommand(Register);
-
+    
     private void Register()
     {
-        // Hash the password before saving it to the database
-        var hashedPassword = PasswordHelper.HashPassword(Password);
-        var user = new User(Username, hashedPassword, Email)
+        using (var context = new MusicAppDbContext())
         {
-            Username = Username,
-            Password = hashedPassword,
-            Email = Email,
-        };
-        user.SaveToDatabase();
-        Password = string.Empty;
-        // Navigate to the main page
-        var welcomePage = new Welcome();
-        if (Application.Current.MainWindow != null)
-        {
-            var mainFrame = Application.Current.MainWindow.FindName("MainFrame") as Frame;
-            mainFrame?.Navigate(welcomePage);
+            // Hash the password before saving it to the database
+            var hashedPassword = PasswordHelper.HashPassword(Password);
+            var user = context.Users.Add(new User{Username = Username, PasswordHash = hashedPassword, Email = Email});
+            if (user?.Entity != null){
+                context.SaveChanges();
+                
+                // Navigate to the main page
+                var welcomePage = new Welcome();
+                if (Application.Current.MainWindow != null)
+                {
+                    var mainFrame = Application.Current.MainWindow.FindName("MainFrame") as Frame;
+                    mainFrame?.Navigate(welcomePage);
+                }
+            }
         }
     }
 

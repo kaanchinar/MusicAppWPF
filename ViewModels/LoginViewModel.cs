@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using MusicAppWPF.Models;
+using MusicAppWPF.Data;
 using MusicAppWPF.Views;
 
 namespace MusicAppWPF.ViewModels;
@@ -32,27 +32,28 @@ public class LoginViewModel : ViewModelBase
     }
 
     public ICommand LoginCommand => new RelayCommand(Login);
-
+    
     private void Login()
     {
-        var hashedPassword = PasswordHelper.HashPassword(Password);
-        var user = new User(Username, hashedPassword, null)
+        using (var context = new MusicAppDbContext())
         {
-            Username = Username,
-            Password = hashedPassword
-        };
-        if (user.VerifyCredentials())
-        {
-            var welcomePage = new Welcome();
-            if (Application.Current.MainWindow != null)
+            var hashedPassword = PasswordHelper.HashPassword(Password);
+            var user = context.Users
+                .FirstOrDefault(u => u.Username == Username && u.PasswordHash == hashedPassword);
+
+            if (user != null)
             {
-                var mainFrame = Application.Current.MainWindow.FindName("MainFrame") as Frame;
-                mainFrame?.Navigate(welcomePage);
+                var welcomePage = new Welcome();
+                if (Application.Current.MainWindow != null)
+                {
+                    var mainFrame = Application.Current.MainWindow.FindName("MainFrame") as Frame;
+                    mainFrame?.Navigate(welcomePage);
+                }
             }
-        }
-        else
-        {
-            ErrorMessage = "Invalid username or password";
+            else
+            {
+                ErrorMessage = "Invalid username or password";
+            }
         }
     }
 

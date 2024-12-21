@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
-        Title="Music App" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Music App" d:DesignHeight="450" d:DesignWidth="800" WindowStartupLocation="CenterScreen">
     <Grid Background="{StaticResource Background}">
         <Frame NavigationUIVisibility="Hidden" Source="Login.xaml" Name="MainFrame"></Frame>
     </Grid>
