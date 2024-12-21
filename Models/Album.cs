@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using MusicAppWPF.Models;
 
 
-public class Album
+public class Album:TimeStamp
 {
     [Key]
     public Guid AlbumId { get; set; }
@@ -13,6 +13,5 @@ public class Album
     public DateOnly ReleaseDate { get; set; }
     public string CoverImageUrl { get; set; }
     
-    public DateTime CreatedAt { get; set; }
-    public DateTime UpdatedAt { get; set; }
+
 }

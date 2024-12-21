@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using FontAwesome.Sharp;
 
 namespace MusicAppWPF.UserControls
@@ -22,6 +23,13 @@ namespace MusicAppWPF.UserControls
         {
             get { return (IconChar)GetValue(ButtonIconProperty); }
             set { SetValue(ButtonIconProperty, value); }
+        }
+        public static readonly DependencyProperty ButtonCommandProperty =
+    DependencyProperty.Register("ButtonCommand", typeof(ICommand), typeof(SidePanelButtons), new PropertyMetadata(null));
+        public ICommand ButtonCommand
+        {
+            get { return (ICommand)GetValue(ButtonCommandProperty); }
+            set { SetValue(ButtonCommandProperty, value); }
         }
 
         public SidePanelButtons()
