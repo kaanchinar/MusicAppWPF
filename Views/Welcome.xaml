@@ -9,8 +9,7 @@
       mc:Ignorable="d"
       Title="Music App" Height="Auto" Width="Auto" d:DesignHeight="450" d:DesignWidth="800" d:Background="{StaticResource Background}">
     <Page.DataContext>
-        
-        <vm:MainWindowViewModel/>
+        <vm:WelcomeViewModel/>
     </Page.DataContext>
     <Grid>
         <!--General page grid-->
@@ -19,22 +18,19 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
-            <!-- <ColumnDefinition Width="*"/> -->
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <!--Left dock panel-->
         <Grid Grid.Row="0" Grid.Column="0">
-           
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                
             </Grid.RowDefinitions>
             <!--Static menu items-->
             <Grid Grid.Column="0" Grid.Row="0" VerticalAlignment="Stretch">
-                
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -43,11 +39,10 @@
                 <local:SidePanelButtons Grid.Row="0" ButtonIcon="CompactDisc" ButtonText="Albums" ButtonCommand="{Binding NavigateToAlbumsCommand}"/>
                 <local:SidePanelButtons Grid.Row="1" ButtonIcon="Users" ButtonText="Artists" ButtonCommand="{Binding NavigateToArtistsCommand}"/>
                 <local:SidePanelButtons Grid.Row="2" ButtonIcon="Music" ButtonText="All Tracks" ButtonCommand="{Binding NavigateToAllTracksCommand}"/>
-            </Grid> 
+            </Grid>
             <!--Playlist grid-->
             <Border Grid.Row="1" BorderBrush="{StaticResource Accent}" BorderThickness="0,1,0,0">
                 <Grid>
-                    
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
@@ -62,15 +57,18 @@
                             </Button.Content>
                         </Button>
                     </Border>
-                    
-                    
                 </Grid>
             </Border>
         </Grid>
-        <GridSplitter Width="2" Background="Red" ResizeBehavior="PreviousAndNext" VerticalAlignment="Stretch" Grid.Column="1"/>
+        <GridSplitter Width="2" Background="{StaticResource Accent}" ResizeBehavior="PreviousAndNext" VerticalAlignment="Stretch" Grid.Column="1"/>
         <Grid Grid.Column="2">
-            <Frame x:Name="ContentFrame" NavigationUIVisibility="Hidden" Source="Albums.xaml"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto" MinHeight="70"/>
+            </Grid.RowDefinitions>
+            <Frame Grid.Row="0" x:Name="ContentFrame" NavigationUIVisibility="Hidden" Source="AllTracks.xaml" />
+            <local:MusicPlayer Grid.Row="1" />
         </Grid>
-
+        <GridSplitter Width="2" Background="{StaticResource Accent}" ResizeBehavior="PreviousAndNext" VerticalAlignment="Stretch" Grid.Column="3"/>
     </Grid>
 </Page>
