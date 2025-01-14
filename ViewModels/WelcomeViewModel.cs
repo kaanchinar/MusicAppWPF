@@ -2,7 +2,7 @@
 
 namespace MusicAppWPF.ViewModels
 {
-    public class WelcomeViewModel:ViewModelBase
+    public class WelcomeViewModel
     {
         public ICommand NavigateToAlbumsCommand { get; }
         public ICommand NavigateToArtistsCommand { get; }

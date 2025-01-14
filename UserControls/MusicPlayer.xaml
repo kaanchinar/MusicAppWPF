@@ -36,7 +36,7 @@
 
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
-                
+                <Image x:Name="AlbumArt" Width="48" Height="48" VerticalAlignment="Center" />
                 <StackPanel Margin="10,0,0,0" VerticalAlignment="Center">
                     <TextBlock x:Name="TrackTitle" Text="Path vol. 2" 
                                FontWeight="Bold" FontSize="14"/>
@@ -44,18 +44,16 @@
                                Foreground="Gray" FontSize="12"/>
                 </StackPanel>
             </StackPanel>
-            <Grid Grid.Column="2" Margin="10,5" VerticalAlignment="Center">
+            <Grid Grid.Column="2" Margin="10,5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="1:11" Foreground="{StaticResource Text}" Grid.Column="0" 
+                <TextBlock Text="1:17" Foreground="{StaticResource Text}" Grid.Column="0" 
                            Margin="0,0,10,0"/>
                 <Slider Grid.Column="1" Value="60" Maximum="100" 
-                        IsMoveToPointEnabled="True">
-                    
-                </Slider>
+                        Style="{StaticResource PlayerSlider}"/>
                 <TextBlock Text="3:23" Foreground="{StaticResource Text}" Grid.Column="2" 
                            Margin="10,0,0,0"/>
             </Grid>
@@ -66,7 +64,7 @@
                     <fa:IconBlock Icon="VolumeTimes"/>
                 </Button>
                 <Slider Width="100" Value="1" Maximum="100" 
-                        Style="{StaticResource PlayerSlider}" VerticalAlignment="Center"/>
+                        Style="{StaticResource PlayerSlider}"/>
             </StackPanel>
         </Grid>
     </Border>
